@@ -9,7 +9,7 @@ import utils.TestContextSetup;
 import java.util.List;
 
 public class ParaBankRegistration {
-  //  public WebDriver driver;
+
     TestContextSetup testContextSetup;
 
     public ParaBankRegistration(TestContextSetup testContextSetup) {
@@ -34,7 +34,7 @@ public class ParaBankRegistration {
 
     @And("User enters enter all the fields on the registration page")
     public void userEntersEnterAllTheFieldsOnTheRegistrationPage(List<List<String>> data) {
-        List<String> fields = data.get(0);
+        List<String> fields = data.getFirst();
         testContextSetup.driver.findElement(By.id("customer.firstName")).sendKeys(fields.get(0));
         testContextSetup.driver.findElement(By.id("customer.lastName")).sendKeys(fields.get(1));
         testContextSetup.driver.findElement(By.id("customer.address.street")).sendKeys(fields.get(2));
@@ -51,12 +51,6 @@ public class ParaBankRegistration {
     @Then("User submits the registration form")
     public void user_submits_the_registration_form() {
         testContextSetup.driver.findElement(By.xpath("//input[@value='Register']")).click();
-        // Optionally, you can add a wait here to ensure the page loads before proceeding
-        try {
-            Thread.sleep(2000); // Wait for 2 seconds
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
     }
 
     @Then("User should see a confirmation message")
